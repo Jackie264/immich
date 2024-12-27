@@ -5,10 +5,10 @@ import 'dart:math';
 class DnsQueryService {
   final String dnsServer;
 
-  /// Constructor with optional custom DNS server address.
+  /// Constructor with optional custom DNS server address
   DnsQueryService({this.dnsServer = '8.8.8.8'});
 
-  /// Query DNS for HTTPS or SRV records and return the resolved URL.
+  /// Query DNS for HTTPS or SRV records and return the resolved URL
   Future<String?> resolveDns(String domain) async {
     final httpsRecord = await _queryDns(domain, 'HTTPS');
     if (httpsRecord != null) {
@@ -23,7 +23,7 @@ class DnsQueryService {
     return null;
   }
 
-  /// Internal method to query DNS for specific record types.
+  /// Internal method to query DNS for specific record types
   Future<String?> _queryDns(String domain, String recordType) async {
     final queryType = recordType == 'HTTPS' ? 65 : 33; // 65: HTTPS, 33: SRV
     RawDatagramSocket? rawSocket;
@@ -71,7 +71,7 @@ class DnsQueryService {
     return null;
   }
 
-  /// Build a DNS request packet for the given domain and record type.
+  /// Build a DNS request packet for the given domain and record type
   List<int> _buildDnsRequest(String domain, int queryType) {
     final packet = <int>[];
 
